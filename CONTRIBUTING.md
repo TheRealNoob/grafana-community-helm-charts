@@ -55,10 +55,20 @@ Charts should start at `1.0.0`. Any breaking (backwards incompatible) changes to
 
 ### Generate README
 
-The readme of each chart can be re-generated with the following command (run inside the chart directory):
+Some (not all) charts make use of [helm-docs](https://github.com/jnorwood/helm-docs) which is a tool for programatically generating the `README.md` file.  If the chart you are modifying contains a `README.md.gotmpl` file, then you do not want to modify the `README.md` file directly, but via this template file.  Additionally, this template bundles in the default values from `values.yaml` so if you modified either of these files, you'll want to run the following command from the repository root to re-create the `README.md` file.
+
+From the repository root:
 
 ```shell
-docker run --rm --volume "$(pwd):/helm-docs" -u "$(id -u)" jnorwood/helm-docs:v1.14.2
+make helm-docs
+```
+
+### Unit Tests
+
+Charts can include [helm-unittest](https://github.com/helm-unittest/helm-unittest) tests under a `tests/` directory. To run all chart unit tests from the repository root:
+
+```shell
+make helm-unittest
 ```
 
 ### Community Requirements
