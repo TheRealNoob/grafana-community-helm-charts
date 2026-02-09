@@ -55,7 +55,7 @@ Charts should start at `1.0.0`. Any breaking (backwards incompatible) changes to
 
 ### Generate README
 
-Some (not all) charts make use of [helm-docs](https://github.com/jnorwood/helm-docs) which is a tool for programatically generating the `README.md` file.  If the chart you are modifying contains a `README.md.gotmpl` file, then you do not want to modify the `README.md` file directly, but via this template file.  Additionally, this template bundles in the default values from `values.yaml` so if you modified either of these files, you'll want to run the following command from the repository root to re-create the `README.md` file.
+Some (not all) charts make use of [helm-docs](https://github.com/jnorwood/helm-docs) which is a tool for programatically generating the `README.md` file.  If the chart you are modifying contains a `README.md.gotmpl` file, then you should run the following command before committing your change.
 
 From the repository root:
 
