@@ -24,5 +24,4 @@
 # Helm plugin tooling
 ci/
 tests/
-README.md
 *.gotmpl
