@@ -70,8 +70,8 @@ jobs:
       - name: Run chart-testing (install)
         run: ct install --config .github/linters/ct.yaml
 
-  check-codeowners-maintainers:
-    name: Check CODEOWNERS & MAINTAINERS.md
+  check-generated-files:
+    name: Check generated files
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -83,7 +83,7 @@ jobs:
 
       - name: generate CODEOWNERS
         run: |
-          ./scripts/check-codeowners.sh | tee .github/CODEOWNERS
+          ./scripts/generate-codeowners.sh | tee .github/CODEOWNERS
 
       - name: check CODEOWNERS for modifications
         run: |
@@ -91,7 +91,7 @@ jobs:
 
       - name: generate MAINTAINERS.md
         run: |
-          ./scripts/check-maintainers.sh | tee MAINTAINERS.md
+          ./scripts/generate-maintainers.sh | tee MAINTAINERS.md
 
       - name: check MAINTAINERS.md for modifications
         run: |
@@ -213,7 +213,7 @@ jobs:
     runs-on: ubuntu-24.04
     needs:
       - lint-test
-      - check-codeowners-maintainers
+      - check-generated-files
       - super-linter
     if: >-
       github.event.pull_request.head.repo.full_name == github.repository
