@@ -37,7 +37,7 @@ make helm-docs
 - **Version bumps**: Every chart change (excluding files listed in `.helmignore`) requires a semver version bump in `Chart.yaml`. Major bumps for breaking changes.
 - **DCO sign-off**: Commits must include `Signed-off-by` line (`git commit -s`).
 - **Squash merge only**: The repo only allows squash merges.
-- **CODEOWNERS/MAINTAINERS**: Auto-generated from `Chart.yaml` maintainer entries by `scripts/check-codeowners.sh` and `scripts/check-maintainers.sh`. Do not edit `.github/CODEOWNERS` or `MAINTAINERS.md` directly.
+- **CODEOWNERS/MAINTAINERS**: Auto-generated from `Chart.yaml` maintainer entries by `scripts/generate-codeowners.sh` and `scripts/generate-maintainers.sh`. Do not edit `.github/CODEOWNERS` or `MAINTAINERS.md` directly.
 - **Minimum Kubernetes version**: Charts target `^1.25.0-0` (`kubeVersion` in `Chart.yaml`).
 
 ## Dependency Management

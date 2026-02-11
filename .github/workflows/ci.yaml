@@ -213,7 +213,7 @@ jobs:
     runs-on: ubuntu-24.04
     needs:
       - lint-test
-      - check-codeowners-maintainers
+      - check-generated-files
       - super-linter
     if: >-
       github.event.pull_request.head.repo.full_name == github.repository
