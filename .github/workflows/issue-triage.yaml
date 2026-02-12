@@ -35,7 +35,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          for chart in $(ls -1 charts); do
+          for chart in $(find charts/ -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort); do
             gh label create "chart/${chart}" \
               --color 0075ca \
               --description "Issues related to the ${chart} Helm Chart" \

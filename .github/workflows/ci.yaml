@@ -107,7 +107,7 @@ jobs:
 
       - name: check issue template chart dropdowns
         run: |
-          EXPECTED=$(ls -1 charts/ | sort)
+          EXPECTED=$(find charts/ -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort)
           for template in .github/ISSUE_TEMPLATE/*.yml; do
             ACTUAL=$(yq -r '.body[] | select(.id == "chart-name") | .attributes.options[]' "$template" 2>/dev/null | sort)
             if [[ -z "$ACTUAL" ]]; then
