@@ -36,7 +36,7 @@ See `git help commit`:
 * Must pass [DCO check](#sign-off-your-work)
 * Must follow [Charts best practices](https://helm.sh/docs/topics/chart_best_practices/)
 * Must pass CI jobs for linting and installing changed charts with the [chart-testing](https://github.com/helm/chart-testing) tool
-* Any change to a chart requires a version bump following [semver](https://semver.org/) principles. See [Immutability](#immutability) and [Versioning](#versioning) below
+* Any change to a chart requires a version bump following [SemVer](https://semver.org/) principles. See [Immutability](#immutability) and [Versioning](#versioning) below
 
 Once changes have been merged, the release job will automatically run to package and release changed charts.
 
@@ -46,14 +46,14 @@ Chart releases must be immutable. Any change to a chart warrants a chart version
 
 ### Versioning
 
-The chart `version` should follow [semver](https://semver.org/).
+The chart `version` should follow [SemVer](https://semver.org/).
 
 Charts should start at `1.0.0`. Any breaking (backwards incompatible) changes to a chart should:
 
 1. Bump the MAJOR version
-2. In the README, under a section called "Upgrading", describe the manual steps necessary to upgrade to the new (specified) MAJOR version
+2. In the readme, under a section called "Upgrading", describe the manual steps necessary to upgrade to the new (specified) MAJOR version
 
-### Generate README
+### Generate readme
 
 Some (not all) charts make use of [helm-docs](https://github.com/jnorwood/helm-docs) which is a tool for programatically generating the `README.md` file.  If the chart you are modifying contains a `README.md.gotmpl` file, then you should run the following command before committing your change.
 

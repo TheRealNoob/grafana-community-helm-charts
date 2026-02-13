@@ -1,0 +1,14 @@
+{
+  "filters": {
+    "comments": true,
+    "allowlist": {
+      "allow": [
+        "e-mail",
+        "Url"
+      ]
+    }
+  },
+  "rules": {
+    "terminology": true
+  }
+}
