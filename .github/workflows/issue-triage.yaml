@@ -49,29 +49,3 @@ jobs:
           section: chart-name
           config-path: .github/advanced-issue-labeler.yml
           token: ${{ github.token }}
-
-      - name: Assign maintainers from CODEOWNERS
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          CHART_NAME: ${{ steps.issue-parser.outputs.issueparser_chart-name }}
-        run: |
-          if [[ -z "$CHART_NAME" ]]; then
-            echo "No chart selected in issue form, skipping."
-            exit 0
-          fi
-
-          ASSIGNEES=$(grep "^/charts/${CHART_NAME}/" .github/CODEOWNERS \
-            | grep -oP '@[\w-]+' \
-            | grep -v '/' \
-            | sed 's/@//' \
-            | paste -sd ',' -)
-
-          if [[ -n "$ASSIGNEES" ]]; then
-            IFS=',' read -ra users <<< "$ASSIGNEES"
-            for user in "${users[@]}"; do
-              gh issue edit "$ISSUE_NUMBER" --add-assignee "$user"
-            done
-          else
-            echo "No individual maintainers found in CODEOWNERS for this chart."
-          fi
