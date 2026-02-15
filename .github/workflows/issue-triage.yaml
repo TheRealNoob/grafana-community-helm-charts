@@ -18,18 +18,17 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-          sparse-checkout: |
-            .github/CODEOWNERS
-            .github/ISSUE_TEMPLATE/bug_report.yml
-            .github/advanced-issue-labeler.yml
-            charts
-          sparse-checkout-cone-mode: false
 
       - name: Parse issue form
+        if: contains(github.event.issue.labels.*.name, 'bug') || contains(github.event.issue.labels.*.name, 'enhancement')
         uses: stefanbuck/github-issue-parser@10dcc54158ba4c137713d9d69d70a2da63b6bda3 # v3.2.3
         id: issue-parser
         with:
-          template-path: .github/ISSUE_TEMPLATE/bug_report.yml
+          template-path: >-
+            .github/ISSUE_TEMPLATE/${{
+              contains(github.event.issue.labels.*.name, 'bug')
+              && 'bug_report.yml' || 'feature_request.yml'
+            }}
 
       - name: Create chart labels
         env:
@@ -37,12 +36,13 @@ jobs:
         run: |
           for chart in $(find charts/ -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort); do
             gh label create "chart/${chart}" \
-              --color 0075ca \
+              --color ec6d13 \
               --description "Issues related to the ${chart} Helm Chart" \
               --force
           done
 
       - name: Label issue by chart name
+        if: steps.issue-parser.outputs.jsonString
         uses: redhat-plumbers-in-action/advanced-issue-labeler@b80ae64e3e156e9c111b075bfa04b295d54e8e2e # v3.2.4
         with:
           issue-form: ${{ steps.issue-parser.outputs.jsonString }}
