@@ -23,7 +23,7 @@ body:
         - tempo-distributed
         - tempo-vulture
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: desc
