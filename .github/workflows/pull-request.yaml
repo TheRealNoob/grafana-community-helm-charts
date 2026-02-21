@@ -8,11 +8,14 @@ on:
     types: ["opened", "reopened", "synchronize", "edited"]
 
 jobs:
-  check-title:
-    name: Check Title
+  check-multiple-chart-changes:
+    name: Check Multiple Chart Changes
     runs-on: ubuntu-24.04
     permissions:
       contents: read
+    outputs:
+      changed: ${{ steps.list-changed.outputs.changed }}
+      changed_list: ${{ steps.list-changed.outputs.changed_list }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -56,8 +59,15 @@ jobs:
         env:
           CHANGED_LIST: ${{ steps.list-changed.outputs.changed_list }}
 
+  check-title:
+    name: Check Title
+    needs: check-multiple-chart-changes
+    if: needs.check-multiple-chart-changes.outputs.changed == 'true'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
       - name: Validate PR Title format
-        if: steps.list-changed.outputs.changed == 'true'
         run: |
           CHANGED_LIST="${CHANGED_LIST//\"/}"
 
@@ -85,5 +95,5 @@ jobs:
             exit 1
           fi
         env:
-          CHANGED_LIST: ${{ steps.list-changed.outputs.changed_list }}
+          CHANGED_LIST: ${{ needs.check-multiple-chart-changes.outputs.changed_list }}
           PR_TITLE: ${{ github.event.pull_request.title }}
