@@ -14,7 +14,7 @@ For the review and merge process, see [PROCESSES.md](./PROCESSES.md).
 
 - [ ] Chart `version` in `Chart.yaml` is bumped
 - [ ] Version follows [semver](https://semver.org/) (`MAJOR.MINOR.PATCH`)
-- [ ] Breaking (backwards-incompatible) changes bump the **MAJOR** version and include an "Upgrading" section in the chart README
+- [ ] Breaking (backwards-incompatible) changes bump the **MAJOR** version and include a `### X.0.0` subsection under the chart README's `## Upgrading` heading
 
 ## Chart.yaml
 
@@ -40,7 +40,6 @@ Optional but encouraged:
 - [ ] Container images are configurable via values file
 - [ ] `resources` are **not** set by default (left for the user to configure)
 - [ ] Features that require cluster resources (persistence, ingress, autoscaling) are **disabled** by default
-- [ ] For Charts leveraging [helm-docs](https://github.com/norwoodj/helm-docs), Values file comments are prefixed with `# --` so that it can distinguish between documentation and examples
 
 ## Labels & Selectors
 
@@ -49,7 +48,6 @@ Optional but encouraged:
 
 ## Documentation
 
-- [ ] Chart README is auto-generated via [helm-docs](https://github.com/norwoodj/helm-docs)
 - [ ] `templates/NOTES.txt` provides accurate post-install instructions when needed
 
 ## Testing
