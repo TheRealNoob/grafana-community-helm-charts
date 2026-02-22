@@ -14,8 +14,7 @@ Kubernetes: `^1.25.0-0`
 
 ### OCI Registry
 
-OCI registries are preferred in Helm as they implement unified storage,
-distribution, and improved security.
+OCI registries are preferred in Helm as they implement unified storage, distribution, and improved security.
 
 ```console
 helm install RELEASE-NAME oci://ghcr.io/grafana-community/helm-charts/grafana
