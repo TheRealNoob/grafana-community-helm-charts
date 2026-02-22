@@ -13,8 +13,8 @@ For the review and merge process, see [PROCESSES.md](./PROCESSES.md).
 ## Versioning
 
 - [ ] Chart `version` in `Chart.yaml` is bumped
-- [ ] Version follows [semver](https://semver.org/) (`MAJOR.MINOR.PATCH`)
-- [ ] Breaking (backwards-incompatible) changes bump the **MAJOR** version and include a `### X.0.0` subsection under the chart README's `## Upgrading` heading
+- [ ] Version follows [SemVer](https://semver.org/) (`MAJOR.MINOR.PATCH`)
+- [ ] Breaking (backwards-incompatible) changes bump the **MAJOR** version and include a `### X.0.0` subsection under the chart readme's `## Upgrading` heading
 
 ## Chart.yaml
 
@@ -24,7 +24,7 @@ Required fields:
 |-------|-------------|
 | `apiVersion` | `v2` |
 | `name` | Matches the chart directory name |
-| `version` | Valid semver, bumped from previous release |
+| `version` | Valid SemVer, bumped from previous release |
 | `appVersion` | Tracks the upstream application version |
 | `description` | Short, meaningful summary |
 | `kubeVersion` | Set appropriately (e.g. `^1.25.0-0`) |
