@@ -53,13 +53,13 @@ Charts should start at `1.0.0`. Any breaking (backwards incompatible) changes to
 1. Bump the MAJOR version
 2. In the readme, under a section called "Upgrading", describe the manual steps necessary to upgrade to the new (specified) MAJOR version
 
-### Unit Tests
+### Upgrading section
 
-Charts can include [helm-unittest](https://github.com/helm-unittest/helm-unittest) tests under a `tests/` directory. To run all chart unit tests from the repository root:
+Major version bumps **must** add a `### X.0.0` subsection under the chart README's `## Upgrading` heading that documents:
 
-```shell
-make helm-unittest
-```
+1. What is breaking
+2. Who is affected
+3. How affected users should proceed
 
 ### Community Requirements
 
