@@ -1,12 +1,12 @@
 # Loki Helm Scenarios
 
-These scenarios are used by Github Workflow: [Publish Rendered Helm Chart Diff](../../../../.github/workflows/helm-diff-ci.yml).
+These scenarios are used by GitHub Workflow: [Publish Rendered Helm Chart Diff](../../../../.github/workflows/helm-diff-ci.yml).
 
-Each scenario is used in a different job execution that will be used to deploy loki inside a K3D cluster in our github action workflow.
+Each scenario is used in a different job execution that will be used to deploy loki inside a K3D cluster in our GitHub Action workflow.
 
 We deploy the scenario with the latest release and then we execute a helm diff with the current version in the workspace, the diff between the release deployed will be posted in the pull request inside a comment like [this](https://github.com/grafana/loki/pull/15734#issuecomment-2592439539) making clear to review.
 
->*NOTE*: the helm diff output file will be available for each scenario inside github action to download for 2 days, after this you may need to re-run the job if you would like to download the output files.
+>*NOTE*: the helm diff output file will be available for each scenario inside GitHub Action to download for 2 days, after this you may need to re-run the job if you would like to download the output files.
 
 ## Add new scenario to the CI
 
@@ -77,6 +77,6 @@ As the last step you need to run a diff between both files:
 
 ### Known Issues
 
-* The Github Action won't be able to post the diff comment if the PR is coming from a fork, because of permissions the workflow run from a fork is not able to write in the PR content.
+* The GitHub Action won't be able to post the diff comment if the PR is coming from a fork, because of permissions the workflow run from a fork is not able to write in the PR content.
 
   In this case, to review the output we recommend to download the artifacts in the workflow run and check the outputs.
