@@ -156,4 +156,4 @@ charts/<chart>/tests/
 - Always run the tests after writing them — untested test files are not useful.
 - If a test run reveals the template doesn't render with default values, investigate `values.yaml` to find the correct defaults and adjust.
 - Prefer specific assertions (`equal`, `contains`) over loose ones (`exists`) — specific assertions catch regressions.
-- Test filenames must end with `.yaml`. This repo configures helm-unittest with `--file 'tests/**/*.yaml'` so any `.yaml` filename is valid — `<template>_test.yaml` is the preferred convention but not enforced.
+- Test filenames must end with `.yaml`. This repository configures helm-unittest with `--file 'tests/**/*.yaml'` so any `.yaml` filename is valid — `<template>_test.yaml` is the preferred convention but not enforced.
