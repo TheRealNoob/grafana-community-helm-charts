@@ -140,7 +140,7 @@ spec:
       emptyDir: {}
     {{- end }}
     {{- with (coalesce $component.extraVolumes .Values.defaults.extraVolumes .Values.global.extraVolumes) }}
-    {{- toYaml . | nindent 8 }}
+    {{- toYaml . | nindent 4 }}
     {{- end }}
   containers:
     - name: {{ $target }}
@@ -152,7 +152,7 @@ spec:
       {{- end }}
       args:
         - -config.file=/etc/loki/config/config.yaml
-        - -target={{ $target }}
+        - -target={{ $target }}{{- if and (or (eq $target "read") (eq $target "querier")) .Values.loki.ui.enabled -}},ui{{- end -}}
         {{- with $args }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
